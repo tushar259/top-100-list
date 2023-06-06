@@ -1,0 +1,52 @@
+.content {
+    margin: 2%;
+}
+.ad-content{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.headline-of-everything .dropdown-menu {
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    z-index: 9999;
+    width: 100%;
+}
+  
+.headline-of-everything .dropdown-menu .dropdown-item {
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+  
+.headline-of-everything .dropdown-menu .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.upload-button-in-ad-page {
+    min-width: 200px;
+}
+
+.box-of-content {
+    /* box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4), 0 0 3px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+}
+
+.box-contents {
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* margin: -10px; Add negative margin to compensate for margin collapse */
+}
+  
+.custom-column {
+    /* flex: 0 0 100%; Set flex-basis to 100% to make each column take full width */
+    /* padding: 10px; Add padding instead of margin for spacing */
+    margin: 10px; /* Add margin-bottom for spacing between columns */
+    width: 50%;
+}
+
+.delete-item-button {
+    height: 40px;
+}
