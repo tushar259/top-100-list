@@ -83,6 +83,46 @@ class UploadEverythingController extends Controller
     	return true;
     }
 
+    public function getAllDataFromCustomAllTablesForUser(){
+    	$request = new Request;
+    	$data = DB::table("all_tables")
+    		->select("id", "table_name_starts_with", "headline", "nav_headline", "priority")
+    		->orderBy("nav_headline")
+    		->get();
+    	if($data->count() > 0){
+    		foreach($data as $value){
+    			if(Schema::hasTable($value->table_name_starts_with."_lists")){
+	    			$childData = DB::table($value->table_name_starts_with."_lists")
+	    				->select("id", "name", "amount")
+	    				->get();
+	    			if($childData->count() > 0){
+	    				$value->lists_of_data = $childData;
+	    			}
+	    			else{
+	    				$value->lists_of_data = null;
+	    			}
+    			}
+    			else{
+    				$checkIfSuccess = $this->createCustomTable($request, $value->table_name_starts_with);
+    				$value->lists_of_data = null;
+    			}
+    		}
+
+    	}
+    	else{
+    		return response()->json([
+	    		'message' => 'No data found',
+	    		'success' => false]);
+    	}
+
+    	return response()->json([
+    			'allData' => $data,
+	    		'message' => 'Data found',
+	    		'success' => true]);
+
+
+    }
+
     public function getAllDataFromCustomAllTables(){
     	$request = new Request;
     	$data = DB::table("all_tables")
@@ -188,6 +228,7 @@ class UploadEverythingController extends Controller
     public function uploadAllNameAndAmount(Request $request){
     	$givenNameAndAmount = $request->json("givenNameAndAmount");
     	$selectedHeadlineId = $request->input("tableId");
+    	$currentDate = date('Y-m-d');
 
     	// return $givenNameAndAmount;
 
@@ -218,6 +259,9 @@ class UploadEverythingController extends Controller
 	    			}
 	    		}
 	    	}
+
+	    	All_Tables::where("table_name_starts_with", $tableNameStartsWith)
+	    		->update(['updated_at' => $currentDate]);
     	}
     	return response()->json([
     		'message' => 'Updated successfully.',

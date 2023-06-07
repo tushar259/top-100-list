@@ -14,7 +14,7 @@ class CustomUsersController extends Controller
     	$routeName = $request->input("routeName");
 
     	$result = DB::table('all_tables')
-		    ->select('id', 'table_name_starts_with', 'headline', 'nav_headline', 'priority')
+		    ->select('id', 'table_name_starts_with', 'headline', 'nav_headline', 'priority', 'updated_at')
 		    ->where(function ($query) use ($routeName) {
 		        $query->orWhere('table_name_starts_with', $routeName)
 		            ->orWhere('headline', $routeName)
@@ -25,10 +25,18 @@ class CustomUsersController extends Controller
 
 		if($result != null){
 			$data = DB::table($result->table_name_starts_with."_lists")
-				->select("id", "name", "amount")
+				->select("id", "name", DB::raw('REPLACE(TRIM(TRAILING "0" FROM ROUND(CAST(REPLACE(amount, ",", "") AS DECIMAL(65, 3)), 3)), ".", "") AS amount_bigdouble'))
+				->orderByRaw('CAST(amount_bigdouble AS DECIMAL(65, 3)) DESC')
+				->limit(100)
 				->get();
 
-			$result->all_childs = $data;
+
+			if($data->count() > 0){
+				$result->all_childs = $data;
+			}
+			else{
+				$result->all_childs = null;
+			}
 
 			return response()->json([
 				'allData' => $result,

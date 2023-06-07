@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/upload-head', 'App\Http\Controllers\UploadEverythingController@uploadHead');
 Route::get('/get-all-data-from-custom-all-tables', 'App\Http\Controllers\UploadEverythingController@getAllDataFromCustomAllTables');
+Route::get('/get-all-data-from-custom-all-tables-for-user', 'App\Http\Controllers\UploadEverythingController@getAllDataFromCustomAllTablesForUser');
 Route::post('/update-headline-now', 'App\Http\Controllers\UploadEverythingController@updateHeadlineNow');
 Route::post('/upload-all-name-and-amount', 'App\Http\Controllers\UploadEverythingController@uploadAllNameAndAmount');
 Route::post('/delete-specific-item', 'App\Http\Controllers\UploadEverythingController@deleteSpecificItem');

@@ -50,3 +50,158 @@
 .delete-item-button {
     height: 40px;
 }
+
+/* .container {
+    margin-top: 40px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 20px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item {
+    padding: 20px;
+    border: none;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.list-serial {
+    font-size: 18px;
+    font-weight: bold;
+    color: #888;
+    margin-top: 5px;
+}
+
+.list-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.list-amount {
+    font-size: 16px;
+    color: #888;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+} */
+
+.top-list-container {
+    /* background-color: #f8f9fa; */
+    padding: 20px;
+    border-radius: 4px;
+    max-width: 700px;
+}
+
+.top-list-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.top-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.top-list-serial {
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #6c757d;
+}
+
+.top-list-name {
+    flex-grow: 1;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.top-list-amount {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.top-list-updated {
+    margin-bottom: 30px;
+    color: #6c757d;
+}
+
+.no-underline,
+.no-underline:hover {
+    text-decoration: none;
+    color: #343a40;
+    margin-left: 5px;
+}
+
+.home-card-container .card{
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.home-row .col-md-3 {
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+  
+.home-row .col-md-9 {
+    padding-right: 15px;
+    padding-left: 15px;
+    border-left: 2px solid #ccc;
+}
+
+.home-row .nav-item{
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.home-row .nav-item:hover{
+    background-color: rgba(238, 235, 235, 0.4);
+}
+
+
+.nav-search-input{
+    border-radius: 8px 0px 0px 8px !important;
+}
+
+.search-nav-item{
+    width: 300px;
+}
+
+.nav-search-input:focus{
+    box-shadow: none !important;
+}
+
+.nav-search-button{
+    border-radius: 0px 8px 8px 0px !important;
+}
+
+.navbar{
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-collapse{
+    margin-left: 15px;
+    margin-right: 15px;
+}

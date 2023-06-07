@@ -12,6 +12,18 @@
                 <li class="nav-item active">
                     <router-link class="nav-link" to="/"  >Home</router-link>
                 </li>
+                <li class="nav-item active">
+                    <router-link class="nav-link" to="/"  >Home</router-link>
+                </li>
+                <li class="nav-item active">
+                    <router-link class="nav-link" to="/"  >Home</router-link>
+                </li>
+                <li class="nav-item active">
+                    <router-link class="nav-link" to="/"  >Home</router-link>
+                </li>
+                <li class="nav-item active">
+                    <router-link class="nav-link" to="/"  >Home</router-link>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-truncate" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Industry
@@ -33,27 +45,31 @@
             </ul>
             <hr class="my-1">
             <ul class="navbar-nav ml-auto"> <!-- d-none -->
-                <li class="nav-item">
-                    <router-link class="nav-link" to="">Login</router-link>
+                <li class="nav-item search-nav-item input-group">
+                    <input class="form-control nav-search-input" placeholder="Search...">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="clearButton">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="">Registration</router-link>
+                    <button class="btn btn-secondary nav-search-button">Search</button>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
+            <!-- <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-truncate" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                         UserEmail here
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <router-link class="dropdown-item" to="/change-password">Change password</router-link>
-                        <!-- <a class="dropdown-item" href="#">Option 2</a>
-                        <a class="dropdown-item" href="#">Option 3</a> -->
+                        
                         <div class="dropdown-divider"></div>
                         <router-link  class="dropdown-item" to="">Logout</router-link>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </nav>
     <div class="content">
