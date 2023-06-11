@@ -31,7 +31,10 @@ Route::post('/upload-all-name-and-amount', 'App\Http\Controllers\UploadEverythin
 Route::post('/delete-specific-item', 'App\Http\Controllers\UploadEverythingController@deleteSpecificItem');
 
 
+
+
 Route::post('/get-current-component-with', 'App\Http\Controllers\CustomUsersController@getCurrentComponentWith');
+Route::get('/get-all-routes-for-nav', 'App\Http\Controllers\CustomUsersController@getAllRoutesForNav');
 
 
 

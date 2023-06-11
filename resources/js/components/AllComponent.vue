@@ -68,6 +68,8 @@ export default {
     },
 
     created(){
+        this.componentFound = null;
+        // console.log(this.$route);
         this.getAllData();
     },
 
@@ -78,7 +80,7 @@ export default {
             formData.append("routeName", this.routeName);
             axios.post("/api/get-current-component-with", formData)
             .then(response =>{
-                console.log(response);
+                // console.log(response);
                 if(response.data.success == true){
                     this.componentFound = true;
                     this.headline = response.data.allData.headline;

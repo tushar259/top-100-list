@@ -49,4 +49,46 @@ class CustomUsersController extends Controller
 	    		'success' => false]);
 		}
     }
+
+    public function getAllRoutesForNav(){
+    	$data = DB::table('all_tables')
+		    ->select('id', 'table_name_starts_with', 'headline', 'nav_headline', 'priority', 'updated_at')
+		    ->orderBy('priority', 'DESC')
+		    ->limit(4)
+		    ->get();
+
+		$excludeIds = $data->pluck('id')->toArray();
+
+		$childs = null;
+
+		if($data->count() > 0){
+			$childs = DB::table('all_tables')
+			    ->select('id', 'table_name_starts_with', 'headline', 'nav_headline', 'priority', 'updated_at')
+			    ->orderBy('priority', 'DESC')
+			    ->whereNotIn('id', $excludeIds)
+			    ->get();
+		}
+		else{
+			$data = null;
+		}
+
+		if($childs->count() == 0){
+			$childs = null;
+		}
+
+		if ($data->count() > 0) {
+		    return response()->json([
+		        'allData' => $data,
+		        'childs' => $childs,
+		        'message' => 'Data found.',
+		        'success' => true
+		    ]);
+		} 
+		else {
+		    return response()->json([
+		        'message' => 'Data not found.',
+		        'success' => false
+		    ]);
+		}
+    }
 }

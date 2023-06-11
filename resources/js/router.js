@@ -1,5 +1,5 @@
 // import {createRouter, createWebHashHistory} from 'vue-router'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 export const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -8,7 +8,6 @@ export const router = createRouter({
         {path: '/', component: () => import('./components/Home.vue')},
         {path: '/add-new-component', component: () => import('./components/AddNewComponent.vue')},
         {path: '/:allComponent', component: () => import('./components/AllComponent.vue')},
-        
         
 
 
