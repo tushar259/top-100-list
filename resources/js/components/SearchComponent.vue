@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="componentFound == false" class="parent-background">
-            Nothing uploaded yet
+            No result found
         </div>
         <div v-else-if="componentFound == null" class="loading-spinner-view parent-background">
             <div class="spinner-border text-primary" role="status">
@@ -10,14 +10,14 @@
         </div>
         <div v-else-if="componentFound == true" class="parent-background">
             <div class="row home-row">
-                <div class="col-md-3 d-none d-md-block">
+                <!-- <div class="col-md-3 d-none d-md-block">
                     <div class="nav-sidebar">
                         <div v-for="(option, index) in options" :key="index" class="nav-item">
                             <router-link class="nav-link text-capitalize no-underline" :to="option.table_name_starts_with">{{ option.nav_headline }}</router-link>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-9">
+                </div> -->
+                <div class="col-md-8">
                     <div class="home-card-container">
                         <a v-for="(option, index) in options" :key="index" class="card" :href="'/'+option.table_name_starts_with" target="_blank">
                             <div class="card-body">
@@ -40,6 +40,7 @@
 export default {
     data(){
         return{
+            searchItem: this.$route.params.data,
             options: [],
             componentFound: null,
         };
@@ -51,7 +52,9 @@ export default {
 
     methods:{
         getAllPages(){
-            axios.get('/api/get-all-data-from-custom-all-tables-for-user')
+            const formData = new FormData();
+            formData.append('searchItem', this.searchItem);
+            axios.post('/api/get-all-data-from-custom-all-tables-for-search', formData)
             .then(response =>{
                 console.log(response);
                 if(response.data.success == true){
@@ -64,6 +67,7 @@ export default {
                 else{
                     this.componentFound = false;
                 }
+                
             })
             .catch(error =>{
                 toast.error(error.response.data.message);

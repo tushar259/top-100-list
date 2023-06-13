@@ -311,4 +311,47 @@ class UploadEverythingController extends Controller
 			}
     	}
     }
+
+    public function getAllDataFromCustomAllTablesForSearch(Request $request){
+    	$searchItem = $request->input("searchItem");
+    	$data = DB::table("all_tables")->get();
+    	$childDataTables = $checkDataTables = $data;
+    	
+    	$childTables = [];
+
+		if ($data->count() > 0) {
+		    foreach ($data as $value) {
+		        $childData = DB::table($value->table_name_starts_with . "_lists")
+		            ->where("name", "LIKE", "%$searchItem%")
+		            ->first();
+
+		        if ($childData != null) {
+		            $childTables[] = $value->table_name_starts_with;
+		        }
+		    }
+		}
+
+		$checkDataTables = collect($checkDataTables)->filter(function ($item) use ($searchItem) {
+		    return str_contains($item->table_name_starts_with, $searchItem)
+		        || str_contains($item->headline, $searchItem)
+		        || str_contains($item->nav_headline, $searchItem);
+		})->toArray();
+
+		$childDataTables = collect($childDataTables)->whereIn('table_name_starts_with', $childTables)->values();
+
+
+		$distinctDataTables = collect($checkDataTables)->merge($childDataTables)->unique()->values()->all();
+    	
+		if(count($distinctDataTables) > 0){
+			return response()->json([
+				'allData' => $distinctDataTables,
+	    		'message' => 'Data found',
+	    		'success' => true]);
+		}
+		else{
+			return response()->json([
+	    		'message' => 'Data not found',
+	    		'success' => false]);
+		}
+    }
 }

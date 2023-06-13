@@ -2,7 +2,9 @@
     
     <nav class="navbar navbar-expand-lg navbar-light" style="width: 100% !important">
         <!-- <a class="navbar-brand" href="#"> -->
-        <img class="navbar-brand navbar-logo-custom" src="/logo/favicon2.png" alt="logo">
+        <div style="width: 170px;">
+            <img class="navbar-brand navbar-logo-custom" src="/logo/favicon2.png" alt="top 100 list logo">
+        </div>
         <!-- </a> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,11 +37,11 @@
             <hr class="my-1">
             <ul class="navbar-nav ml-auto"> <!-- d-none -->
                 <li class="nav-item search-nav-item">
-                    <input class="form-control nav-search-input" placeholder="Search...">
+                    <input class="form-control nav-search-input" id="searchedData" v-model="searchItem" @keyup="saveSearchedItem()" @keyup.enter="gotoSearchPage()" placeholder="Search...">
                     
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-secondary nav-search-button">Search</button>
+                    <a class="btn btn-secondary nav-search-button" :href="'/search/'+searchItem" >Search</a>
                 </li>
             </ul>
             <!-- <ul class="navbar-nav ml-auto">
@@ -65,13 +67,15 @@
 
 <script>
 import AllComponent from './components/AllComponent.vue';
+import {router} from './router.js';
 
 export default {
     name: 'App',
     data(){
         return{
             navlinks: [],
-            navSublinks: []
+            navSublinks: [],
+            searchItem: localStorage.getItem('searchedItem'),
         };
     },
 
@@ -119,6 +123,15 @@ export default {
             //     // AllComponent.methods.getAllData.call(this);
             // });
         },
+
+        saveSearchedItem(){
+            localStorage.setItem('searchedItem', this.searchItem);
+            console.log(localStorage.getItem('searchedItem'));
+        },
+
+        gotoSearchPage(){
+            this.$router.push('/search/'+this.searchItem);
+        }
     }
 
 }

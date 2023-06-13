@@ -6,8 +6,11 @@ export const router = createRouter({
         // {path: '/:pathMatch(.*)*', component: () => import('./components/NotfoundComponent.vue')},
         // {path: '/', component: () => import('./components/ShowInfo.vue')},
         {path: '/', component: () => import('./components/Home.vue')},
-        {path: '/add-new-component', component: () => import('./components/AddNewComponent.vue')},
         {path: '/:allComponent', component: () => import('./components/AllComponent.vue')},
+        {path: '/search/:data', component: () => import('./components/SearchComponent.vue')},
+
+
+        {path: '/add-new-component', component: () => import('./components/AddNewComponent.vue')},
         
 
 
