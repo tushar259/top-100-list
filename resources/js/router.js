@@ -11,6 +11,7 @@ export const router = createRouter({
 
 
         {path: '/add-new-component', component: () => import('./components/AddNewComponent.vue')},
+        {path: '/login', component: () => import('./components/Login.vue')},
         
 
 

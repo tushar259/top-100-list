@@ -205,3 +205,15 @@ h2 {
     margin-left: 15px;
     margin-right: 15px;
 }
+
+.card-title{
+    color: #343a40;
+}
+
+.child-list{
+    color: #6c757d;
+}
+
+.card:hover{
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.2);
+}

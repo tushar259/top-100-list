@@ -96,11 +96,13 @@ export default{
             newName: '',
             newAmount: '',
             hideValue: false,
+            checkIfVerifiedUserIdentified: false,
         };
     },
 
     created(){
-        this.getAllData();
+        this.getUserInfo();
+        // this.getAllData();
     },
 
     computed: {
@@ -190,7 +192,7 @@ export default{
         uploadHeadClicked(){
             this.isLoading = true;
             this.uploadedHead = false;
-            if(this.selectedValue.trim() == "" || this.navTitle.trim() == "" || this.priority == "" || this.priority == null){
+            if(this.selectedValue.trim() == "" || this.navTitle.trim() == "" || this.priority == "" || this.priority == null || this.checkIfVerifiedUserIdentified == false){
                 if(this.selectedValue.trim() == ""){
 
                 }
@@ -349,6 +351,24 @@ export default{
             })
             .catch(error =>{
                 toast.error(error.response.data.message);
+            });
+        },
+
+        getUserInfo(){
+            this.checkIfVerifiedUserIdentified = false;
+            axios.get('/api/get-user-info')
+            .then(response =>{
+                console.log(response);
+                if(response.data.success == true){
+                    this.getAllData();
+                    this.checkIfVerifiedUserIdentified = true;
+                }
+                else{
+                    this.$router.push('/');
+                }
+            })
+            .catch(error =>{
+
             });
         }
 

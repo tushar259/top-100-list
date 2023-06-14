@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\All_Tables;
+use Illuminate\Support\Facades\Session;
 
 
 class CustomUsersController extends Controller
@@ -54,7 +55,7 @@ class CustomUsersController extends Controller
     	$data = DB::table('all_tables')
 		    ->select('id', 'table_name_starts_with', 'headline', 'nav_headline', 'priority', 'updated_at')
 		    ->orderBy('priority', 'DESC')
-		    ->limit(4)
+		    ->limit(3)
 		    ->get();
 
 		$excludeIds = $data->pluck('id')->toArray();
@@ -90,5 +91,48 @@ class CustomUsersController extends Controller
 		        'success' => false
 		    ]);
 		}
+    }
+
+    public function goingToLogIn(Request $request){
+    	session_start();
+    	$request->validate([
+	        'email' => 'required|min:3|max:255',
+	        'password' => 'required'
+	    ]);
+
+    	$email = $request->input("email");
+    	$password = $request->input("password");
+
+    	// 1a5b10c
+
+    	if(hash('sha256', $password) == "b80284274b2448eb31fe2233de1d7a53ebd0297372539e0ea7624ed358de7ea4" && $email == "frieght@tu_ac.fhi"){
+    		// Session::put('loggedIn', 'done_yay');
+    		$_SESSION['loggedIn'] = 'done_yay';
+    		return response()->json([
+		        'message' => 'User identified.',
+		        'success' => true
+		    ]);
+    	}
+    	else{
+    		$_SESSION['loggedIn'] = '';
+    		return response()->json([
+		        'message' => 'User could not identify.',
+		        'success' => false
+		    ]);
+    	}
+    }
+
+    public function getUserInfo(){
+    	session_start();
+    	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 'done_yay'){
+    		return response()->json([
+		        'message' => 'User identified.',
+		        'success' => true
+		    ]);
+    	}
+    	return response()->json([
+	        'message' => 'User could not identify.',
+	        'success' => false
+	    ]);
     }
 }

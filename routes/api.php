@@ -40,3 +40,9 @@ Route::get('/get-all-routes-for-nav', 'App\Http\Controllers\CustomUsersControlle
 
 
 
+Route::post('/going-to-log-in', 'App\Http\Controllers\CustomUsersController@goingToLogIn');
+Route::get('/get-user-info', 'App\Http\Controllers\CustomUsersController@getUserInfo');
+
+
+
+

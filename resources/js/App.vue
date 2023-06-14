@@ -37,7 +37,7 @@
             <hr class="my-1">
             <ul class="navbar-nav ml-auto"> <!-- d-none -->
                 <li class="nav-item search-nav-item">
-                    <input class="form-control nav-search-input" id="searchedData" v-model="searchItem" @keyup="saveSearchedItem()" @keyup.enter="gotoSearchPage()" placeholder="Search...">
+                    <input class="form-control nav-search-input" id="searchedData" v-model="searchItem" @keyup="saveSearchedItem()" placeholder="Search...">
                     
                 </li>
                 <li class="nav-item">
