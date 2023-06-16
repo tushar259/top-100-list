@@ -71,6 +71,7 @@ import {router} from './router.js';
 
 export default {
     name: 'App',
+    
     data(){
         return{
             navlinks: [],

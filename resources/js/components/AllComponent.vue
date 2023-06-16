@@ -55,7 +55,9 @@
 </template>
 
 <script>
+
 export default {
+
     data(){
         return{
             routeName: this.$route.params.allComponent,
@@ -71,6 +73,14 @@ export default {
         this.componentFound = null;
         // console.log(this.$route);
         this.getAllData();
+    },
+
+    mounted() {
+        const metaTag = document.getElementById('pageDescriptionMeta');
+        if (metaTag) {
+            metaTag.setAttribute('name', 'description');
+            metaTag.setAttribute('content', 'Your meta description');
+        }
     },
 
     methods: {
@@ -90,8 +100,7 @@ export default {
                     response.data.allData.all_childs.forEach(item => {
                         this.allChilds.push(item);
                     });
-
-                    
+                    document.title = "My website - "+this.headline;
                 }
                 else{
                     this.componentFound = false;
@@ -101,7 +110,9 @@ export default {
             .catch(error =>{
                 // console.log(error);
             });
-        }
+        },
+
+        
     }
 };
 </script>
